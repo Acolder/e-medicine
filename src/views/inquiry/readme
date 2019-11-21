@@ -1,0 +1,14 @@
+1.通用组件，layout-chat
+
+How to set keyboard.
+3.update data,and show them
+ 1.bind @keyup.enter,indefine a Array
+ 2.when enter a value,push into Arrays
+ 3.down keyboard,clean input value
+ //document.activeElement.blur();
+ 4.scroll to bottom
+
+Other:
+1.如何滚动到底部
+2.组件是否能定义方法，使得方法能够复用。
+

@@ -1,0 +1,247 @@
+@import './var.less';
+.border-1px(@color) {
+  position: relative;
+  &:after {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-top: 1px solid @color;
+    width: 100%;
+    content: '';
+  }
+}
+.border-top-1px(@color) {
+  position: relative;
+  &:before {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-top: 1px solid @color;
+    width: 100%;
+    content: '';
+  }
+}
+.border-none() {
+  &:after {
+    display: none;
+  }
+}
+.border-top-none() {
+  &:before {
+    display: none;
+  }
+}
+.bg-image(@url) {
+  background-image: url("../../assets/images/2x@{url}.png");
+  @media (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3) {
+    background-image: url("../../assets/images/3x@{url}.png");
+  }
+}
+.font-dpr(@size) {
+  font-size: @size;
+  @media (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3) {
+    font-size: (@size+1) * 1px;
+  }
+  @media (-webkit-min-device-pixel-ratio: 3.5),(min-device-pixel-ratio: 3.5) {
+    font-size: (@size+1) * 1px;
+  }
+}
+
+  // 左右垂直居中
+  .align-center(@method){
+    position: @method;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%);
+    -webkit-transform:translate(-50%, -50%);
+    z-index: 10001;
+  }
+  .cell-allow-1px(@size,@color){
+    width: @size;
+    height: @size;
+    border-color: @color;
+    border-top-width: 1px;
+    border-right-width: 1px;
+  }
+
+  .padding-12px(){
+    padding: 0 12px;
+  }
+
+.btn-construct(@font-size,@bg-color,@padding,@radius,@c){
+  .btn();
+  text-shadow: 0 1px 1px rgba(0,0,0,.3);
+  font-size:@font-size ;
+  background-color: @bg-color;
+  padding: @padding;
+  border-radius: @radius;
+  color: @c;
+}
+/** 2018/6/6 autor:zlf
+ *  summary:按钮
+ *  usage：
+ *
+ *
+*/
+.btn(){
+  cursor: pointer;
+  display: inline-block;
+  user-select: none;
+  text-decoration: none;
+}
+/** 2018/5/18 autor:zlf
+ *  summary:基本按钮，包含，阴影
+ *  usage：
+*/
+.btn-construct(@font-size,@bg-color,@padding,@radius,@c){
+  .btn();
+  text-shadow: 0 1px 1px rgba(0,0,0,.3);
+  font-size:@font-size ;
+  background-color: @bg-color;
+  padding: @padding;
+  border-radius: @radius;
+  color: @c;
+}
+/** 2018/5/19 autor:zlf
+ *  summary:渐变按钮+边框阴影+字体阴影
+ *  usage：
+*/
+.btn-construct-linear-gradual(@font-size,@bg-color,@padding,@radius,@c){
+  .btn();
+  font-size:@font-size ;
+  padding: @padding;
+  border-radius: @radius;
+  color: @c;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  background: linear-gradient(to bottom right, lighten(@bg-color,20%) , @bg-color);
+}
+
+
+.radius-btn(@height,@padding,@radius,@fontsize){
+  display: inline-block;
+  height: @height;
+  line-height: @height;
+  padding: 0 @padding;
+  text-align: center;
+  border-radius: @radius;
+  font-size: @fontsize;
+}
+// 白底颜色边框按钮
+.border-radius-btn(@height,@padding,@color,@radius,@fontsize){
+  .radius-btn(@height,@padding,@radius,@fontsize);
+  color: @color;
+  border: solid 1px @color;
+}
+// 白字背景颜色按钮
+.background-radius-btn(@height,@padding,@color,@radius,@fontsize){
+  .radius-btn(@height,@padding,@radius,@fontsize);
+  color: #fff;
+  background: @color;
+}
+
+
+
+/** 2018/6/6 autor:zlf
+ *  summary:图标
+ *  usage：
+ *
+ *
+*/
+// 1.箭头
+.turn-icon(@clor,@size,@deg){
+  display: inline-block;
+  border-left: 1px solid @clor;
+  border-bottom: 1px solid @clor;
+  width: @size;
+  height: @size;
+  transform: rotate(@deg);
+}
+// 2.图标构建
+.icon-construction(@url,@size){
+  display: inline-block;
+  width: @size;
+  height: @size;
+  background: ~"url('@{url}')" 0 0;
+  background-size: @size @size;
+}
+/** 2018/5/19 autor:zlf
+ *  summary:圆圈中的箭头
+*/
+.cicle-turn-icon(@color,@size,@deg) {
+  position: relative;
+  width: @size;
+  height: @size;
+  border-radius: 100%;
+  border: 1px solid @color;
+  text-align: center;
+  line-height: @size;
+  &:after {
+    position: absolute;
+    content: " ";
+    left: @size*.2;
+    top: @size*.3;
+    line-height:@size;
+    .turn-icon(@color, @size*.3, @deg);
+  }
+}
+// 3.圆形+箭头+小型+箭头向右边
+.cicle-turn-icon-small-right(@color) {
+  .cicle-turn-icon(@color,14px,-135deg);
+}
+// 4.圆形+箭头+小型+箭头向下
+.cicle-turn-icon-small-down(@color) {
+  .cicle-turn-icon(@color,14px,-45deg);
+}
+/** 2018/6/6 autor:zlf
+ *  summary:文本
+ *  usage：
+ *
+ *
+*/
+// 1.多行文本溢出省略
+.multipleTextOverflow(@maxHeight,@padding,@bg_color) {
+  position: relative;
+  overflow: hidden;
+  max-height: @maxHeight;
+  &:before {
+    content: "...";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: @padding;
+    background: -webkit-linear-gradient(left, transparent, @bg_color 0%);
+    background: -o-linear-gradient(right, transparent, @bg_color 0%);
+    background: -moz-linear-gradient(right, transparent, @bg_color 0%);
+    background: linear-gradient(to right, transparent, @bg_color 0%);
+  }
+}
+
+// 单行文本溢出
+.aline-text-overflow(@height) {
+  height: @height;
+  line-height: @height;
+  overflow: hidden;
+  white-space: normal;
+  // text-overflow: ellipsis;
+  // word-wrap: break-word;
+  word-break: break-all;
+}
+//多行文本溢出
+.multi-text-overflow(@line){
+  display: -webkit-box;
+  display: -moz-box;
+  /*! autoprefixer: off */
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  /* autoprefixer: on */
+  -webkit-line-clamp: @line;
+  -moz-line-clamp:@line !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+

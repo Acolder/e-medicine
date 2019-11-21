@@ -1,0 +1,13 @@
+/build/
+/config/
+/dist/
+/*.js
+/test/unit/coverage/
+/src/views/inquiry/doing.vue
+/src/views/inquiry/intoSecond.vue
+/src/views/inquiry/guideDefault.vue
+/src/views/inquiry/rongyun/
+/src/views/inquirySheet/index.vue
+/src/views/payment/payCompleted.vue
+/src/views/payment/paySuccess.vue
+/src/components/chat/js/
